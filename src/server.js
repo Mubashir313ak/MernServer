@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 app.use("/api/users", require("./routes/user"));
+app.use("/api/post", require("./routes/post"));
 
 // Start the server
 app.listen(PORT, () => {

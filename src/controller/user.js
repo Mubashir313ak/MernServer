@@ -4,13 +4,19 @@ const User = require("../models/user"); // Adjust path as necessary
 // Signup function
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, whatsappNumber, picture } = req.body;
 
     // Create a new user instance
-    const newUser = new User({ name, email, password });
+    const newUser = new User({
+      name,
+      email,
+      password,
+      whatsappNumber,
+      picture,
+    });
     await newUser.save();
 
-    res.status(201).json({ message: "User created successfully" });
+    res.status(201).json({ newUser, message: "User created successfully" });
   } catch (error) {
     console.error("Signup error:", error); // Log for debugging
     res.status(400).json({ error: "User registration failed" });
@@ -41,7 +47,10 @@ exports.login = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.json({ token });
+    res.json({
+      user: { user },
+      token,
+    });
   } catch (error) {
     console.error("Login error:", error); // Log error details
     res.status(400).json({ error: "Login failed" });

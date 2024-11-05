@@ -4,6 +4,12 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  whatsappNumber: { type: Number, required: true },
+  picture: {
+    type: String,
+    default:
+      "https://media-bucket-meuzi.s3.ap-southeast-1.amazonaws.com/user.png",
+  },
 });
 
 // Hash the password before saving the user
