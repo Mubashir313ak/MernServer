@@ -11,6 +11,11 @@ const commentSchema = new mongoose.Schema(
     authorName: { type: String }, // Store the commenter's name here
     authorUserName: { type: String }, // Store the commenter's username here
     post: { type: mongoose.Schema.Types.ObjectId, ref: "Post", required: true }, // Reference to the post
+    parentComment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+      default: null,
+    }, // Reference to a parent comment, if it's a reply
   },
   { timestamps: true }
 );
