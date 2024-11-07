@@ -5,7 +5,6 @@ exports.createPost = async (req, res) => {
   const { title, content } = req.body;
 
   const post = new Post({
-    // Corrected the model instantiation (capital 'P')
     title,
     content,
   });
