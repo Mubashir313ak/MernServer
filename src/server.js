@@ -18,16 +18,16 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB:", err));
 
-// Define your API routes
-app.use("/api/users", require("./routes/user"));
-app.use("/api/post", require("./routes/post"));
-// app.use("/api/comments", require("./routes/comments"));
-// app.use("/api/like", require("./routes/likes"));
-
 // Base route for testing
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// Export for Vercel
+// Define your API routes
+app.use("/api/users", require("./routes/user"));
+app.use("/api/post", require("./routes/post"));
+app.use("/api/comments", require("./routes/comments"));
+app.use("/api/like", require("./routes/likes"));
+
+// Export the app for Vercel
 module.exports = app;
