@@ -4,13 +4,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Middleware setup
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB
+// MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -19,14 +18,16 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB:", err));
 
-// Example route
+// Define your API routes
+app.use("/api/users", require("./routes/user"));
+app.use("/api/post", require("./routes/post"));
+// app.use("/api/comments", require("./routes/comments"));
+// app.use("/api/like", require("./routes/likes"));
+
+// Base route for testing
 app.get("/", (req, res) => {
   res.send("API is running");
 });
-app.use("/api/users", require("./routes/user"));
-app.use("/api/post", require("./routes/post"));
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Export for Vercel
+module.exports = app;
