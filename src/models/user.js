@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
+  userName: { type: String, required: true, unique: true },
+
   password: { type: String, required: true },
   whatsappNumber: { type: Number, required: true },
   picture: {
@@ -10,6 +12,11 @@ const userSchema = new mongoose.Schema({
     default:
       "https://media-bucket-meuzi.s3.ap-southeast-1.amazonaws.com/user.png",
   },
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Like" }],
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // References to users who follow this user
+  following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], // References to users this user is following
 });
 
 // Hash the password before saving the user
