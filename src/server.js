@@ -4,13 +4,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Middleware setup
 app.use(express.json());
 app.use(cors());
 
-// Connect to MongoDB
+// MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -24,7 +23,7 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// API routes
+// Define your API routes
 app.use("/api/users", require("./routes/user"));
 app.use("/api/post", require("./routes/post"));
 app.use("/api/comments", require("./routes/comments"));
