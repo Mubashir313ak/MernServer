@@ -19,16 +19,16 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB:", err));
 
-// Example route
+// Base route for testing
 app.get("/", (req, res) => {
   res.send("API is running");
 });
+
+// API routes
 app.use("/api/users", require("./routes/user"));
 app.use("/api/post", require("./routes/post"));
 app.use("/api/comments", require("./routes/comments"));
 app.use("/api/like", require("./routes/likes"));
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Export the app for Vercel
+module.exports = app;

@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      // required: true,
     }, // Reference to user
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Like" }],
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],

@@ -2,12 +2,11 @@ const Post = require("../models/post");
 
 // Create a new post
 exports.createPost = async (req, res) => {
-  const { title, content, author } = req.body; // Destructure author from req.body
+  const { title, content } = req.body;
 
   const post = new Post({
     title,
     content,
-    author, // Include author in the new Post instance
   });
 
   try {
