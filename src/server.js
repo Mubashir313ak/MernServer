@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-
+const PORT = process.env.PORT || 5000;
 // Middleware setup
 app.use(express.json());
 app.use(cors());
@@ -29,5 +29,8 @@ app.use("/api/post", require("./routes/post"));
 app.use("/api/comments", require("./routes/comments"));
 app.use("/api/like", require("./routes/likes"));
 
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // Export the app for Vercel
 module.exports = app;
